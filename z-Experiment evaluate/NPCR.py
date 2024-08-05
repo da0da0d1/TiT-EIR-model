@@ -247,12 +247,6 @@ def calculate_npcr(image1, image2):
     NPCR = (D / (H * W)) * 100
     return NPCR
 
-def calculate_uaci(image1, image2):
-    H, W = image1.shape
-    diff = np.abs(image1 - image2)
-    UACI = (np.sum(diff) / (H * W * 255)) * 100
-    return UACI
-
 def differential_attack_test(image_path):
     # read plain-image
     image = cv2.imread(image_path)
@@ -266,11 +260,10 @@ def differential_attack_test(image_path):
     # encrypt changed-image
     encrypted_image2 = encrypt_image(modified_image)
     encrypted_image2 = cv2.cvtColor(encrypted_image2, cv2.COLOR_BGR2GRAY)
-    # calculate NPCR and UACI
+    # calculate NPCR
     npcr_value = calculate_npcr(encrypted_image1, encrypted_image2)
-    uaci_value = calculate_uaci(encrypted_image1, encrypted_image2)
 
-    return npcr_value, uaci_value
+    return npcr_value
 
 
 now_time = datetime.datetime.now()
@@ -281,19 +274,14 @@ image_directory = 'data/plainimages'
 image_paths = [os.path.join(image_directory, f'34_{i}.jpg') for i in range(3401, 3501)]
 
 npcr_values = []
-uaci_values = []
 
 for image_path in image_paths:
     if os.path.exists(image_path):
         npcr, uaci = differential_attack_test(image_path)
         npcr_values.append(npcr)
-        uaci_values.append(uaci)
 
 average_npcr = np.mean(npcr_values)
-average_uaci = np.mean(uaci_values)
-
 print(f"Average NPCR: {average_npcr}%")
-print(f"Average UACI: {average_uaci}%")
 
 now_time = datetime.datetime.now()
 print(now_time)
