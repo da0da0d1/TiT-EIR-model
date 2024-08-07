@@ -16,9 +16,8 @@ from ..unsupervised_model.model import CLIP
 from loss import RankedLoss, CrossEntropyLabelSmooth
 import pickle
 
-parser = argparse.ArgumentParser(description='Train supervised on EViT')
-args = parser.parse_args('')  # running in ipynb
-# set command line arguments here when running in ipynb
+parser = argparse.ArgumentParser(description='Train supervised on TiT')
+args = parser.parse_args('')  
 
 args.lr = 1e-4
 args.weight_decay = 5e-5
