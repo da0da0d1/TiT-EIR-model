@@ -1,8 +1,8 @@
 import torch.nn as nn
 import numpy as np
 import torch
-from backbone.TiT1 import TiT1
-from backbone.TiT2 import TiT2
+from ..backbone.TiT1 import TiT1
+from ..backbone.TiT2 import TiT2
 
 class NetWrapper(nn.Module):
     def __init__(self, net1, net2):
