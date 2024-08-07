@@ -13,14 +13,14 @@ import numpy as np
 import datetime
 import pickle
 
-parser = argparse.ArgumentParser(description='Train unsupervised on EViT')
+parser = argparse.ArgumentParser(description='Train unsupervised on TiT')
 args = parser.parse_args('')
 
 ## set training parameter
 args.lr = 1e-3
 args.weight_decay = 5e-5
 args.type = 'Corel10K'
-args.epochs = 30
+args.epochs = 300
 
 train_data,train_data_b, test_data,test_data_b, train_huffman_feature,train_huffman_feature_b,test_huffman_feature,test_huffman_feature_b, train_label, test_label = split_data(type=args.type)
 
